@@ -1,0 +1,69 @@
+
+/* 
+    Classes for organizing layout
+*/
+.selections_column {
+    display: flex;
+    align-items: center;
+    justify-content:center;
+    flex-direction: column;
+}
+
+.selections_row {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: row;
+}
+
+/*
+    Classes for making the dropdown menus
+*/  
+.dropdown {
+    /* position: relative; */
+    display: inline-block; /* keep selections in a column */
+    /* padding: 10px 20px 10px 20px; */
+}
+
+/* The button to hover over to show selection options */
+.dropdown_button {
+    background-color: wheat;
+    color: black;
+    border: 1px solid;
+    padding: 18px;
+    font-size: medium;
+}
+
+/* Change color of dropdown button when hovering over it */
+.dropdown:hover .dropdown_button {
+    background-color: rgb(199, 179, 143);;
+}
+
+/* The selection options */
+.dropdown_selections {
+    display: none; /* invisible until hovered over */
+    position: absolute;
+    z-index: 1;
+}
+
+/* The selections */
+.dropdown_selections a {
+    background-color: wheat;
+    color: black;
+    text-decoration: none; /* remove link underlines */
+    display: block;
+    padding: 3px 10px 3px 10px; 
+}
+
+/* Change color of selections when hovered over */
+.dropdown_selections a:hover {
+    background-color: rgb(199, 179, 143);;
+}
+
+/* Make selections visible when hovering over their button */
+.dropdown:hover .dropdown_selections {
+    display: flex;
+    align-items: left;
+    flex-direction: column;
+}
+
