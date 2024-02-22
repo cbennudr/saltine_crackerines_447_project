@@ -11,25 +11,48 @@
 
     <div class="selections_column">
         <div class="selections_row">
-            <div class="dropdown">
-                <button class="dropdown_button">Type</button>
-                <div class="dropdown_selections">
-                    <a href="#">Fire</a>
-                    <a href="#">Water</a>
-                    <a href="#">Grass</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="dropdown_button">Type</button>
-                <div class="dropdown_selections">
-                    <a href="#">Fire</a>
-                    <a href="#">Water</a>
-                    <a href="#">Grass</a>
-                </div>
-            </div>
+
+            <label for="pokemon_id">Pokemon ID: </label>
+            <input type="number" id="pokemon_id" placeholder="Enter pokemon ID here">
+
+            <label for="pokemon_name">Pokemon Name: </label>
+            <input type="text" id="pokemon_name" placeholder="Enter pokemon name here">
+
         </div>
+
         <div class="selections_row">
-            <div class="dropdown">
+
+            <label for="min_attack">Minimum attack: </label>
+            <input type="number" id="min_attack" placeholder="Minimum attack">
+
+            <label for="min_defense">Minimum defense: </label>
+            <input type="number" id="min_defense" placeholder="Minimum defense">
+
+            <label for="min_hp">Minimum HP: </label>
+            <input type="number" id="min_hp" placeholder="Minimum HP">
+
+        </div>
+
+        <div class="selections_row">
+
+            <label for="min_sp_attack">Minimum special attack: </label>
+            <input type="number" id="min_sp_attack" placeholder="Minimum special attack">
+
+            <label for="min_sp_defense">Minimum special defense: </label>
+            <input type="number" id="min_sp_defense" placeholder="Minimum special defense">
+
+        </div>
+        
+        <div class="selections_row">
+        
+            <label for="min_speed">Minimum speed: </label>
+            <input type="number" id="min_speed" placeholder="Minimum speed">
+
+        </div>
+
+        <div class="selections_row">
+
+            <div class="dropdown" id="type1">
                 <button class="dropdown_button">Type</button>
                 <div class="dropdown_selections">
                     <a href="#">Fire</a>
@@ -37,6 +60,16 @@
                     <a href="#">Grass</a>
                 </div>
             </div>
+
+            <div class="dropdown" id="type2">
+                <button class="dropdown_button">Type</button>
+                <div class="dropdown_selections">
+                    <a href="#">Fire</a>
+                    <a href="#">Water</a>
+                    <a href="#">Grass</a>
+                </div>
+            </div>
+
         </div>
     </div>
     
