@@ -10,20 +10,21 @@ Pokemon team builder that allows for filtering through pokemon by various attrib
 Requirements Analysis:
 Data:
 1.	Pokemon: id, name, types, height, weight, combat power, evolution
-2.	Player: name, color, buddy, pokemon owned, battles & outcomes
+2.	Player: id, name, color, buddy, pokemon owned, battles & outcomes
 3.	Types: name, strengths, weaknesses
 4.	Items: name, ability
 Constraints:
-1.	A team must have six Pokemon
-2.	A team can only have one buddy Pokemon
-3.	Team name must be unique
-4.	Type name must be unique
-5.	Pokemon name must be unique
+1.	A player must have six Pokemon
+2.	A player can only have one buddy Pokemon
+3.	Player ID must be unique
+4.  Item name must be unique.
+5.	Pokemon number must be unique
 6.	Pokemon can have multiple types
 7.	Types can have multiple strengths and weaknesses
 8.	A team has a color
 9.	A team can battle another team
 10.	There is an outcome to a battle. 
+11. An item can have multiple abilities.
 Operations:
 1.	Adding/removing Pokemon to a team
 2.	Updating information in Team, Type, and Pokemon
@@ -50,6 +51,7 @@ Type(name)
 Type_Strength(type_name, strength)
 Type_Weakness(type_name, weakness)
 PokemonType(pokemon_name, type_name)
-Item(name, ability)
+Item(name)
+ItemAbility(item_name, ability)
 Player_use_item(player_id, item_name)
 Item_worksfor_type(item_name, type_name)
