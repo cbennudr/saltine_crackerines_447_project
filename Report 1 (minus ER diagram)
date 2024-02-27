@@ -42,11 +42,14 @@ Constraints:
 6.	Team, type, and pokemon are all identified by their name.
 
 Logical design: Relational Schemas
-Team(name, color, buddy)
-Battle(team1_name, team2_name, outcome)
-Pokemon(name, CP, size, evolution)
-Pokemon_in_Team(team_name, pokemon_name)
+Player(id, name, color, buddy)
+Battle(player1_name, player2_name, outcome)
+Pokemon(num, name, CP, height, weight, evolution)
+Pokemon_in_Team(player_name, pokemon_name)
 Type(name)
 Type_Strength(type_name, strength)
 Type_Weakness(type_name, weakness)
 PokemonType(pokemon_name, type_name)
+Item(name, ability)
+Player_use_item(player_id, item_name)
+Item_worksfor_type(item_name, type_name)
