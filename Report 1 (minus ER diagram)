@@ -7,7 +7,7 @@ Project Report 1
 3-8-24
 
 Introduction:
-We are managing a Pokemon database with information about each Pokemon, their types, their trainers, and battles. It’s important to keep track of the Pokemon information so that we can know things like which Pokemon belong to which team, what abilities come with each species and types, who won each battle, etc. A database will also make inserting, removing, and updating each Pokemon from each corresponding table (such as adding a Pokemon to a team, adding a skill to a Pokemon, etc.) easy.
+We are managing a Pokemon database with information about each Pokemon, their types, their trainers, and battles. It’s important to keep track of the Pokemon information so that we can know things like which Pokemon belong to which team, what abilities come with each species and types, who won each battle, etc. A database will also make inserting, removing, and updating each Pokemon from each corresponding table (such as adding a Pokemon to a team, updating a Pokemon weight, etc.) easy.
 
 Requirements Analysis:
 Data:
@@ -58,25 +58,26 @@ Conceptual Design:  ER-diagram
 
 Constraints:
 1.	A player must have six Pokemon
-2.	A player can only have one buddy Pokemon
+2.	A player can have one buddy Pokemon
 3.	Pokemon can have multiple types
 4.	A player can battle another player
 5.	There is an outcome to a battle.
-6.	An item can have multiple abilities
-7.	Pokemon have combat power (CP), height, weight, name, and are identified by number.
-8.	Types have strengths, weaknesses, and are identified by name
-9.	Players have a name, team color, and are identified by their id
-10.	Items are identified by their name and also have abilities
+6.	Pokemon have combat power (CP), height, weight, name, and are identified by number.
+7.	Types have strengths, weaknesses, and are identified by name
+8.	Players have a name, team color, and are identified by their id
+9.	Items are identified by their name and also have abilities
+10.	Players use items
+11.	An item works for specific types
 
 Logical design: Relational Schemas
 Player(id, name, color, buddy)
-Battle(player1_name, player2_name, outcome)
+Battle(player1_id, player2_id, outcome)
 Pokemon(pokemon_num, pokemon_name, CP, height, weight)
-Pokemon_in_Team(player_num, pokemon_num)
+Pokemon_in_Team(player_id, pokemon_num)
 Type(type_name)
 Type_Strength(type_name, strength)
 Type_Weakness(type_name, weakness)
-Pokemon_Type(pokemon_name, type_name)
+Pokemon_Type(pokemon_num, type_name)
 Item(item¬_name)
 Item_Ability(item_name, ability)
 Player_use_item(player_id, item_name)
