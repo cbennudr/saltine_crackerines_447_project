@@ -7,7 +7,7 @@ Project Report 1
 3-8-24
 
 Introduction:
-Pokemon team builder that allows for filtering through pokemon by various attributes. Managing a Pokemon database with information about each Pokemon, their types, their trainers, and battles. It’s important to keep track of the Pokemon information so that we can know things like which Pokemon belong to which team, what abilities come with each species and types, who won each battle, etc. A database will also make inserting, removing, and updating each Pokemon from each corresponding table (such as adding a Pokemon to a team, adding a skill to a Pokemon, etc.) easy.
+We are managing a Pokemon database with information about each Pokemon, their types, their trainers, and battles. It’s important to keep track of the Pokemon information so that we can know things like which Pokemon belong to which team, what abilities come with each species and types, who won each battle, etc. A database will also make inserting, removing, and updating each Pokemon from each corresponding table (such as adding a Pokemon to a team, adding a skill to a Pokemon, etc.) easy.
 
 Requirements Analysis:
 Data:
@@ -19,41 +19,66 @@ Constraints:
 1.	A player must have six Pokemon
 2.	A player can only have one buddy Pokemon
 3.	Player ID must be unique
-4.  Item name must be unique.
+4.	Item name must be unique;
 5.	Pokemon number must be unique
 6.	Pokemon can have multiple types
 7.	Types can have multiple strengths and weaknesses
-8.	A team has a color
-9.	A team can battle another team
-10.	There is an outcome to a battle. 
-11. An item can have multiple abilities.
+8.	A player has a team color
+9.	A player can battle another player
+10.	There is an outcome to a battle.
+11.	An item can have multiple abilities
+12.	A type must have a unique name
+13.	Domain Constraints:
+a.	Player
+i.	id: int (key) > 0
+ii.	name: string
+iii.	team_color: string
+b.	Pokemon
+i.	poke_num: int (key) > 0
+ii.	name: string
+iii.	type: string (multivalued)
+iv.	height: float (non-negative)
+v.	weight: float (non-negative)
+vi.	cp: int (non-negative)
+c.	Types	
+i.	type_name: string (key)
+ii.	weak_against: string (multivalued)
+iii.	strong_against: string (multivalued)
+d.	Items
+i.	item_name: string (key)
+ii.	ability: string (multivalued)
 Operations:
-1.	Adding/removing Pokemon to a team
-2.	Updating information in Team, Type, and Pokemon
-3.	Adding/deleting entries in Team, Type, and Pokemon
-4.	Battling another team
-5.	Using item
- 
+1.	Adding/removing Pokemon to a player
+2.	Updating information in Player, Type, and Pokemon
+3.	Adding/deleting entries in Player, Type, and Pokemon
+4.	Battling another player
+5.	Player using item
+6.	Player assigning buddy pokemon 
 Conceptual Design:  ER-diagram
 
 Constraints:
-1.	A team must have six Pokemon
-2.	A team can only have one buddy Pokemon
+1.	A player must have six Pokemon
+2.	A player can only have one buddy Pokemon
 3.	Pokemon can have multiple types
-4.	Types can have multiple strengths and weaknesses
-5.	A team can battle another team
-6.	Team, type, and pokemon are all identified by their name.
+4.	A player can battle another player
+5.	There is an outcome to a battle.
+6.	An item can have multiple abilities
+7.	Pokemon have combat power (CP), height, weight, name, and are identified by number.
+8.	Types have strengths, weaknesses, and are identified by name
+9.	Players have a name, team color, and are identified by their id
+10.	Items are identified by their name and also have abilities
 
 Logical design: Relational Schemas
 Player(id, name, color, buddy)
 Battle(player1_name, player2_name, outcome)
-Pokemon(num, name, CP, height, weight, evolution)
-Pokemon_in_Team(player_name, pokemon_name)
-Type(name)
+Pokemon(pokemon_num, pokemon_name, CP, height, weight)
+Pokemon_in_Team(player_num, pokemon_num)
+Type(type_name)
 Type_Strength(type_name, strength)
 Type_Weakness(type_name, weakness)
-PokemonType(pokemon_name, type_name)
-Item(name)
-ItemAbility(item_name, ability)
+Pokemon_Type(pokemon_name, type_name)
+Item(item¬_name)
+Item_Ability(item_name, ability)
 Player_use_item(player_id, item_name)
 Item_worksfor_type(item_name, type_name)
+
