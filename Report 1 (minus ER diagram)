@@ -7,7 +7,7 @@ Project Report 1
 3-8-24
 
 Introduction:
-We are managing a Pokemon database with information about each Pokemon, their types, their players, and battles. It’s important to keep track of the Pokemon information so that we can know things like which Pokemon belong to which players, what types belong to which Pokemon, who won each battle, etc. A database will also make inserting, removing, and updating each Pokemon from each corresponding table (such as adding a Pokemon to a team, updating a Pokemon weight, etc.) easy.
+We are managing a Pokemon database with information about each Pokemon, their types, their players, items, and battles. It’s important to keep track of the Pokemon information so that we can know things like which Pokemon belong to which players, what types belong to which Pokemon, who won each battle, etc. A database will also make inserting, removing, and updating each Pokemon from each corresponding table (such as adding a Pokemon to a team, updating a Pokemon weight, etc.) easy.
 
 Requirements Analysis:
 Data:
