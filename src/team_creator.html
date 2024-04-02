@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles/creator_styles.css">
+    <script src="./js/autocomplete.js"></script>
+
+</head>
+<body>
+    <div class="main">
+        <h1> Create your team! </h1>
+
+        <br><br>
+
+        <h1> Choose your pokemon...
+
+        <div>
+            <h2> Search by... </h2>
+            <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+            <div class="autocomplete">
+                <input id="pokemon_name" type="text" placeholder="Pokemon name">
+            </div>
+            <input type="submit">
+            <script>
+                autocomplete(document.getElementById("pokemon_name"), countries);
+            </script>
+            
+        </div>
+
+        <!-- for filtering by min/max value, use slider with two slide tabs -->
+
+        <!-- display images of selected pokemon and their names -->
+
+        <h2><a href="./battle.html"> BATTLE! </a></h2>
+
+    </div>    
+</body>
+</html>

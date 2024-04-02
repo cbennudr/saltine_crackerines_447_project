@@ -1,0 +1,19 @@
+
+* {
+    background-color: #E8DAB2;
+}
+
+/* body {
+    
+} */
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.home_img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
