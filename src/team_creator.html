@@ -5,36 +5,53 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/creator_styles.css">
+    <link rel="stylesheet" href="styles/creator_styles_autocomplete.css">
     <script src="./js/autocomplete.js"></script>
-
 </head>
 <body>
-    <div class="main">
-        <h1> Create your team! </h1>
+    <h1 style="display: flex; justify-content: center; align-items: center; height: 10%; margin: 15px 0px 0px 0px;"> Create your team! </h1><br>
 
-        <br><br>
+    <div class="sections">
 
-        <h1> Choose your pokemon...
-
-        <div>
-            <h2> Search by... </h2>
-            <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-            <div class="autocomplete">
-                <input id="pokemon_name" type="text" placeholder="Pokemon name">
-            </div>
-            <input type="submit">
-            <script>
-                autocomplete(document.getElementById("pokemon_name"), countries);
-            </script>
-            
+        <!-- display images of selected pokemon and their names to the left of the page -->
+        <div class="selected_poke_block">
+            <img class=selected_poke_img src="./images/ditto.png">
+            <img class=selected_poke_img src="./images/ditto.png">
+            <img class=selected_poke_img src="./images/ditto.png">
+            <img class=selected_poke_img src="./images/ditto.png">
+            <img class=selected_poke_img src="./images/ditto.png">
+            <img class=selected_poke_img src="./images/ditto.png">
         </div>
+        
+        <div class="filtering_block">
+            
+            <!-- search by pokemon name -->
+            <div class="search_block">
+                <h2> Search by... </h2>
+                <div class="pokemon_name_search">
+                    <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+                    <div class="autocomplete">
+                        <input id="pokemon_name" type="text" placeholder="Pokemon name">
+                    </div>
+                    <script>
+                        autocomplete(document.getElementById("pokemon_name"), countries);
+                    </script>
+                </div>
+            </div>
 
-        <!-- for filtering by min/max value, use slider with two slide tabs -->
+            <!-- filter by type -->
+            <div class="type_search">
+                <p>test</p>
+            </div>
 
-        <!-- display images of selected pokemon and their names -->
+            <!-- for filtering by min/max value, use slider with two slide tabs -->
 
-        <h2><a href="./battle.html"> BATTLE! </a></h2>
+            <!-- display results of search in horizontal scrollbox at bottom of page -->
 
+            
+            <br><br>
+            <!-- <h2><a href="./battle.html"> BATTLE! </a></h2> -->
+        </div>
     </div>    
 </body>
 </html>
