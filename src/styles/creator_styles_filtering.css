@@ -5,7 +5,7 @@
     justify-content: space-evenly;
     align-items: center;
 
-    height: 100%; width: 75%;
+    height: 70%; width: 100%;
 
     background-color: #FE5F55;
 }
@@ -45,8 +45,8 @@
 
 .type_search select {
     width: 15vw;
-    height: 5vh;
-    font-size: large;
+    height: 6vh;
+    font-size: 1.5vw;
     border-radius: 2vh;
     text-align-last: center;
 }
@@ -56,28 +56,64 @@
 .weak_strong_against_block {
     display: flex;
     flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 1vh 1vw 1vh 1vw;
 }
 
 .weak_against_block {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    align-items: center;
+    font-size: 1vw;
+    border-radius: 1vw;
+    border: 1px solid black;
+
+    margin: 0vh 3vw 0vh 3vw;
+    padding: 0vh .25vw .5vh .25vw;
+
 }
 
 .weak_against_row {
     display: flex;
     flex-direction: row;
     justify-content: center;
+    padding: .1vh .25vw .1vh .25vw;
 }
 
 .weak_against_row input[type="submit"] {
     width: 5vw;
-    font-size: small;
+    font-size: 1vw;
     flex: 1;
+    text-align: center;
+    /* padding: 0vh .1vw 0vh .1vw; */
 }
 
-.weak_against_row input[type="submit"]{
+.strong_against_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1vw;
+    border-radius: 1vw;
+    border: 1px solid black;
+
+    margin: 0vh 3vw 0vh 3vw;
+    padding: 0vh .25vw .5vh .25vw;
+}
+
+.strong_against_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding: .1vh .25vw .1vh .25vw;
+}
+
+.strong_against_row input[type="submit"] {
     width: 5vw;
     font-size: 1vw;
+    flex: 1;
     text-align: center;
+    /* padding: 0vh .1vw 0vh .1vw; */
 }

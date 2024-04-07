@@ -1,0 +1,42 @@
+.min_values {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: purple;
+    margin: .25vw;
+}
+
+.min_values_text {
+    font-size: 1.25vw;
+    margin: 0px;
+}
+
+.slider_row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.individual_slider_block {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: orange;
+    text-align: center;
+    margin: .1vh 3vw .1vh 3vw;
+    padding: .25vh 0vw .25vh 0vw;
+}
+
+.individual_slider_block input[type="range"] {
+    width: 20vw;
+}
+
+.slider_text {
+    font-size: 1vw;
+    text-align: center;
+    justify-content: center;
+    margin: 0px;
+}

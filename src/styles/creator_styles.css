@@ -23,24 +23,29 @@ body {
 }
 
 .header_bar {
-    height: 10vh;
+    height: 10%;
     width: 100%;
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
+    text-align: center;
 }
 
 .title_text {
-    /* display: flex; 
-    justify-content: center; 
-    align-items: center;  */
-    /* height: 10%;  */
-    margin: 15px 0px 0px 0px;
+    margin: 1.5vh 0vw 0vh 0vw;
     align-self: center;
+    font-size: 3vw;
 }
 
 .back_button {
     width: 15vw;
     margin: 1vh 0vw 1vh 1vw;
+}
+
+.view_team_button {
+    width: 15vw;
+    margin: 1vh 1vw 1vh 1vw;
 }
 
 .sections {
@@ -56,11 +61,12 @@ body {
 .selected_poke_block {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    /* overflow-y: scroll; */
 
     background-color: aqua;
-    width: 25%;
+    width: 20%;
     height: 100%;
 }
 
@@ -68,5 +74,22 @@ body {
     width: 15vh; 
     height: 15vh;
     background-color: transparent;
-    padding: 10px 10px 10px 10px;
+    padding: 1vh 1vw 1vh 1vw;
+}
+
+.selected_poke_text {
+    font-size: 2vw;
+    padding-bottom: 0vh;
+}
+
+.right_section {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    height: 100%; width: 80%;
+
+    background-color: brown;
+    overflow-x: hidden;
 }

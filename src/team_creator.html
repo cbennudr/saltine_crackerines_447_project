@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="styles/creator_styles.css">
     <link rel="stylesheet" href="styles/creator_styles_autocomplete.css">
     <link rel="stylesheet" href="styles/creator_styles_filtering.css">
+    <link rel="stylesheet" href="styles/creator_styles_results.css">
+    <link rel="stylesheet" href="styles/creator_styles_min_values.css">
     <script src="./js/autocomplete.js"></script>
 </head>
 <body>
@@ -15,13 +17,15 @@
         <input class="back_button" type="submit" value="Back" onclick="window.location='./home.html'">
         <!-- header text -->
         <h1 class="title_text"> Create your team! </h1>
-        <input type="submit" value="spacer" style="width: 15vw; visibility: hidden;">
+        <input class="view_team_button" type="submit" value="View Team" onclick="window.location='./team_view.html'">
     </div>
 
     <div class="sections">
 
         <!-- display images of selected pokemon and their names to the left of the page -->
         <div class="selected_poke_block">
+            <h2 class="selected_poke_text">Selected pokemon</h2>
+
             <img class=selected_poke_img src="./images/ditto.png">
             <img class=selected_poke_img src="./images/ditto.png">
             <img class=selected_poke_img src="./images/ditto.png">
@@ -31,99 +35,180 @@
         </div>
         
         <!-- elements for searching/filtering for pokemon -->
-        <div class="filtering_block">
-            
-            <!-- search by pokemon name -->
-            <div class="search_block">
-                <div class="pokemon_name_search">
-                    <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-                    <div class="autocomplete">
-                        <input id="pokemon_name" type="text" placeholder="Pokemon name">
+        <div class="right_section">
+            <div class="filtering_block">
+                
+                <!-- search by pokemon name -->
+                <div class="search_block">
+                    <div class="pokemon_name_search">
+                        <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+                        <div class="autocomplete">
+                            <input id="pokemon_name" type="text" placeholder="Pokemon name">
+                        </div>
+                        <script>
+                            autocomplete(document.getElementById("pokemon_name"), countries);
+                        </script>
                     </div>
-                    <script>
-                        autocomplete(document.getElementById("pokemon_name"), countries);
-                    </script>
                 </div>
-            </div>
 
-            <!-- filter by type -->
-            <div class="type_search">
-                <!-- primary type -->
-                <select> 
-                    <option value="primary_type" selected>Primary Type</option>
-                    <option value="bug">Bug</option>
-                    <option value="dragon">Dragon</option>
-                    <option value="electric">Electric</option>
-                    <option value="fighting">Fighting</option>
-                    <option value="fire">Fire</option>
-                    <option value="flying">Flying</option>
-                    <option value="ghost">Ghost</option>
-                    <option value="grass">Grass</option>
-                    <option value="ground">Ground</option>
-                    <option value="ice">Ice</option>
-                    <option value="normal">Normal</option>
-                    <option value="poison">Poison</option>
-                    <option value="rock">Rock</option>
-                    <option value="water">Water</option>
-                </select>
-                <!-- secondary type -->
-                <select> 
-                    <option value="secondary_type" selected>Secondary Type</option>
-                    <option value="bug">Bug</option>
-                    <option value="dragon">Dragon</option>
-                    <option value="electric">Electric</option>
-                    <option value="fighting">Fighting</option>
-                    <option value="fire">Fire</option>
-                    <option value="flying">Flying</option>
-                    <option value="ghost">Ghost</option>
-                    <option value="grass">Grass</option>
-                    <option value="ground">Ground</option>
-                    <option value="ice">Ice</option>
-                    <option value="normal">Normal</option>
-                    <option value="poison">Poison</option>
-                    <option value="psychic">Psychic</option>
-                    <option value="rock">Rock</option>
-                    <option value="water">Water</option>
-                </select>
-            </div>
+                <!-- filter by type -->
+                <div class="type_search">
+                    <!-- primary type -->
+                    <select> 
+                        <option value="primary_type" selected>Primary Type</option>
+                        <option value="bug">Bug</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="electric">Electric</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="fire">Fire</option>
+                        <option value="flying">Flying</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="grass">Grass</option>
+                        <option value="ground">Ground</option>
+                        <option value="ice">Ice</option>
+                        <option value="normal">Normal</option>
+                        <option value="poison">Poison</option>
+                        <option value="rock">Rock</option>
+                        <option value="water">Water</option>
+                    </select>
+                    <!-- secondary type -->
+                    <select> 
+                        <option value="secondary_type" selected>Secondary Type</option>
+                        <option value="bug">Bug</option>
+                        <option value="dragon">Dragon</option>
+                        <option value="electric">Electric</option>
+                        <option value="fighting">Fighting</option>
+                        <option value="fire">Fire</option>
+                        <option value="flying">Flying</option>
+                        <option value="ghost">Ghost</option>
+                        <option value="grass">Grass</option>
+                        <option value="ground">Ground</option>
+                        <option value="ice">Ice</option>
+                        <option value="normal">Normal</option>
+                        <option value="poison">Poison</option>
+                        <option value="psychic">Psychic</option>
+                        <option value="rock">Rock</option>
+                        <option value="water">Water</option>
+                    </select>
+                </div>
 
-            <!-- weak/strong against is 5x5 selection button area -->
-            <div class="weak_strong_against_block">
-                <div class="weak_against_block">
-                    <div class="weak_against_row">
-                        <input type="submit" value="bug">
-                        <input type="submit" value="dragon">
-                        <input type="submit" value="electric">
-                        <input type="submit" value="fighting">
-                        <input type="submit" value="fire">
-                    </div>
-                    <div class="weak_against_row">
-                        <input type="submit" value="flying">
-                        <input type="submit" value="ghost">
-                        <input type="submit" value="grass">
-                        <input type="submit" value="ground">
-                        <input type="submit" value="ice">
-                    </div>
-                    <div class="weak_against_row">
-                        <input type="submit" value="normal">
-                        <input type="submit" value="poison">
-                        <input type="submit" value="psychic">
-                        <input type="submit" value="rock">
-                        <input type="submit" value="water">
-                    </div>
+                <!-- weak/strong against is 5x5 selection button area -->
+                <div class="weak_strong_against_block">
                     
+                    <div class="weak_against_block">
+                        <p>Types weak against</p>
+                        <div class="weak_against_row">
+                            <input type="submit" value="bug">
+                            <input type="submit" value="dragon">
+                            <input type="submit" value="electric">
+                            <input type="submit" value="fighting">
+                            <input type="submit" value="fire">
+                        </div>
+                        <div class="weak_against_row">
+                            <input type="submit" value="flying">
+                            <input type="submit" value="ghost">
+                            <input type="submit" value="grass">
+                            <input type="submit" value="ground">
+                            <input type="submit" value="ice">
+                        </div>
+                        <div class="weak_against_row">
+                            <input type="submit" value="normal">
+                            <input type="submit" value="poison">
+                            <input type="submit" value="psychic">
+                            <input type="submit" value="rock">
+                            <input type="submit" value="water">
+                        </div>
+                        
+                    </div>
+
+                    <div class="strong_against_block">
+                        <p>Types strong against</p>
+                        <div class="strong_against_row">
+                            <input type="submit" value="bug">
+                            <input type="submit" value="dragon">
+                            <input type="submit" value="electric">
+                            <input type="submit" value="fighting">
+                            <input type="submit" value="fire">
+                        </div>
+                        <div class="strong_against_row">
+                            <input type="submit" value="flying">
+                            <input type="submit" value="ghost">
+                            <input type="submit" value="grass">
+                            <input type="submit" value="ground">
+                            <input type="submit" value="ice">
+                        </div>
+                        <div class="strong_against_row">
+                            <input type="submit" value="normal">
+                            <input type="submit" value="poison">
+                            <input type="submit" value="psychic">
+                            <input type="submit" value="rock">
+                            <input type="submit" value="water">
+                        </div>
+                        
+                    </div>
+
                 </div>
 
+                <!-- for filtering by min value, use slider -->
+                <!-- min: attack, defense, hp, special attack, special defense, speed -->
+                <div class="min_values">
+                    <p class="min_values_text">Minimum values</p>
+                    <div class="slider_row">
+                        <div class="individual_slider_block">
+                            <p class="slider_text">Attack</p>
+                            <input type="range" title="testing">
+                        </div>
+                        <div class="individual_slider_block">
+                            <p class="slider_text">Defense</p>
+                            <input type="range" title="testing">
+                        </div>
+                        <div class="individual_slider_block">
+                            <p class="slider_text">HP</p>
+                            <input type="range" title="testing">
+                        </div>
+                    </div>
+                    <div class="slider_row">
+                        <div class="individual_slider_block">
+                            <p class="slider_text">Sp. Attack</p>
+                            <input type="range" title="testing">
+                        </div>
+                        <div class="individual_slider_block">
+                            <p class="slider_text">Sp. Defense</p>
+                            <input type="range" title="testing">
+                        </div>
+                        <div class="individual_slider_block">
+                            <p class="slider_text">Speed</p>
+                            <input type="range" title="testing">
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+
             </div>
-
-            <!-- for filtering by min/max value, use slider with two slide tabs -->
-
-
             <!-- display results of search in horizontal scrollbox at bottom of page -->
-
-            
-            <br><br>
-            <!-- <h2><a href="./battle.html"> BATTLE! </a></h2> -->
+            <div class="results_block"> 
+                <img class=selected_poke_img id="first" src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+            </div>
         </div>
     </div>    
 </body>
