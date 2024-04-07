@@ -1,4 +1,6 @@
 <?php
+
+echo("hello");
 // Connect to MySQL server, select database
 $conn = mysqli_connect('mysql.eecs.ku.edu', '447s24_b915h027', 'Na9oang9', '447s24_b915h027'); //using my credentials rn... don't know if that's right
 // Check connection
