@@ -10,7 +10,7 @@
 * {
     background-color: var(--col1);
     box-sizing: border-box;
-
+    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 body {
@@ -30,6 +30,8 @@ body {
     justify-content: space-between;
     align-items: center;
     text-align: center;
+    margin-bottom: 1vh;
+    margin-top: 0vh;
 }
 
 .title_text {
@@ -71,8 +73,8 @@ body {
 }
 
 .selected_poke_img {
-    width: 15vh; 
-    height: 15vh;
+    width: auto; 
+    height: 12vh;
     background-color: transparent;
     padding: 1vh 1vw 1vh 1vw;
 }

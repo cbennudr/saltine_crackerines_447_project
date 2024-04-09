@@ -13,9 +13,11 @@ input {
 }
 
 input[type=text] {
-    background-color: var(--col4);
+    background-color: var(--col1);
     color: #fff;
     width: 100%;
+    border: 1px solid black;
+    border-radius: 2vh;
 }
 
 input[type=submit] {

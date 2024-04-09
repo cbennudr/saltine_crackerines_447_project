@@ -1,19 +1,26 @@
 
 * {
+    font-family: Georgia, 'Times New Roman', Times, serif;
     background-color: #E8DAB2;
+    overflow-y: hidden;
 }
-
-/* body {
-    
-} */
 
 .main {
     display: flex;
+    flex-direction: column;
     justify-content: center;
+}
+
+.home_text {
+    font-size: 5vw;
 }
 
 .home_img {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.home_img img {
+    width: 40vw; height: auto;
 }

@@ -33,6 +33,9 @@
 .individual_slider_block input[type="range"] {
     width: 20vw;
 }
+.individual_slider_block input[type="range"]:hover {
+    cursor: pointer;
+}
 
 .slider_text {
     font-size: 1vw;

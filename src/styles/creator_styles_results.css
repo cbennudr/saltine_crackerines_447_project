@@ -11,3 +11,10 @@
 
     background-color: green;
 }
+
+.results_block img {
+    height: 20vh;
+    width: auto;
+    background-color: transparent;
+    padding: 1vh 1vw 1vh 1vw;
+}
