@@ -49,8 +49,8 @@ i.	item_name: string (key)
 ii.	ability: string (multivalued)
 Operations:
 1.	Adding/removing Pokemon to a player
-2.	Updating information in Player, Type, and Pokemon
-3.	Adding/deleting entries in Player, Type, and Pokemon
+2.	Updating information in Player, Pokemon in team
+3.	Adding/deleting entries in Player, Pokemon in team
 4.	Battling another player
 5.	Player using item
 6.	Player assigning buddy pokemon 
