@@ -65,10 +65,12 @@ body {
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
+    text-align: center;
+    font-weight: 500;
     /* overflow-y: scroll; */
 
     background-color: aqua;
-    width: 20%;
+    width: 15%;
     height: 100%;
 }
 
@@ -77,6 +79,10 @@ body {
     height: 12vh;
     background-color: transparent;
     padding: 1vh 1vw 1vh 1vw;
+}
+
+.selected_poke_img:hover{
+    cursor: pointer;
 }
 
 .selected_poke_text {
@@ -90,7 +96,7 @@ body {
     justify-content: flex-start;
     align-items: center;
 
-    height: 100%; width: 80%;
+    height: 100%; width: 85%;
 
     background-color: brown;
     overflow-x: hidden;

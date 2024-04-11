@@ -23,15 +23,10 @@
     <div class="sections">
 
         <!-- display images of selected pokemon and their names to the left of the page -->
-        <div class="selected_poke_block">
-            <h2 class="selected_poke_text">Selected pokemon</h2>
+        <div class="selected_poke_block" id="selected_poke">
+            <p class="selected_poke_text">Selected pokemon</p>
+            <!-- selected pokemon images appear below -->
 
-            <img class=selected_poke_img src="./images/ditto.png">
-            <img class=selected_poke_img src="./images/ditto.png">
-            <img class=selected_poke_img src="./images/ditto.png">
-            <img class=selected_poke_img src="./images/ditto.png">
-            <img class=selected_poke_img src="./images/ditto.png">
-            <img class=selected_poke_img src="./images/ditto.png">
         </div>
         
         <!-- elements for searching/filtering for pokemon -->
@@ -184,32 +179,48 @@
 
                 </div>
 
-
-
-
             </div>
             <!-- display results of search in horizontal scrollbox at bottom of page -->
             <div class="results_block"> 
-                <img class=selected_poke_im id="first" src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
-                <img class=selected_poke_im src="./images/ditto.png">
+                <!-- <a onclick="document.getElementById('first').style.width='10px'"><img class=selected_poke_im id="first" src="./images/ditto.png"></a> -->
+                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/ditto.png">
+                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/dragonite.png">
+                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/mew.png">
+                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/pikachu.png">
+                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/vaporeon.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
+                <img class=selected_poke_img src="./images/ditto.png">
             </div>
         </div>
-    </div>    
+    </div> 
+    <script>
+        function selectPoke(img) {
+            const numSelectedPoke = document.getElementById("selected_poke").children.length;
+            // const numSelectedPoke = document.querySelectorAll(".selected_poke_block").children.length;
+            if (numSelectedPoke > 6) {
+                alert("Cannot select anymore pokemon (max 6)!");
+                return;
+            }
+
+            const clone = img.cloneNode(true);
+            // set clone's onclick to remove itself from the selected pokemon when its clicked
+            clone.onclick = function() { deselectPoke(clone); }
+            document.getElementById("selected_poke").appendChild(clone);
+        } 
+        function deselectPoke(img) {
+            img.remove();
+        }
+    </script>
 </body>
 </html>
