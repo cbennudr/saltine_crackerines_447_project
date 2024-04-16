@@ -204,33 +204,38 @@ if ($mysqli->connect_error) {
                 <!-- for filtering by min value, use slider -->
                 <!-- min: attack, defense, hp, special attack, special defense, speed -->
                 <div class="min_values">
-                    <p class="min_values_text">Minimum values</p>
                     <div class="slider_row">
                         <div class="individual_slider_block">
-                            <p class="slider_text">Attack</p>
-                            <input type="range" title="testing">
+                            <!-- attack max = 190 -->
+                            <p class="slider_text">Min. Attack: 0</p>
+                            <input type="range" name="min_attack" id="min_attack" value=0 max="190" onchange="this.previousSibling.previousSibling.innerHTML='Min. Attack: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
-                            <p class="slider_text">Defense</p>
-                            <input type="range" title="testing">
+                            <!-- defense max = 250 -->
+                            <p class="slider_text">Min. Defense: 0</p>
+                            <input type="range" name="min_defense" id="min_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Defense: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
-                            <p class="slider_text">HP</p>
-                            <input type="range" title="testing">
+                            <!-- hp max = 255 -->
+                            <p class="slider_text">Min. HP: 0</p>
+                            <input type="range" name="min_hp" id="min_hp" value=0 max="255" onchange="this.previousSibling.previousSibling.innerHTML='Min. HP: '+this.value;">
                         </div>
                     </div>
                     <div class="slider_row">
                         <div class="individual_slider_block">
-                            <p class="slider_text">Sp. Attack</p>
-                            <input type="range" title="testing">
+                            <!-- sp attack max = 194 -->
+                            <p class="slider_text">Min. Sp. Attack: 0</p>
+                            <input type="range" name="min_sp_attack" id="min_sp_attack" value=0 max="194" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Attack: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
-                            <p class="slider_text">Sp. Defense</p>
-                            <input type="range" title="testing">
+                            <!-- sp defense max = 250 -->
+                            <p class="slider_text">Min. Sp. Defense: 0</p>
+                            <input type="range" name="min_sp_defense" id="min_sp_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Defense: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
-                            <p class="slider_text">Speed</p>
-                            <input type="range" title="testing">
+                            <!-- speed max = 200 -->
+                            <p class="slider_text">Min. Speed: 0</p>
+                            <input type="range" name="min_speed" id="min_speed" value=0 max="200" onchange="this.previousSibling.previousSibling.innerHTML='Min. Speed: '+this.value;">
                         </div>
                     </div>
 
