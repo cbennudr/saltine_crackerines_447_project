@@ -23,6 +23,14 @@ $weaknesses = "";
 $wq = '';
 $strengths = '';
 $sq = '';
+$hp = $_POST['min_hp'];
+$attack = $_POST['min_attack'];
+$defense = $_POST['min_defense'];
+$spa = $_POST['min_sp_attack'];
+$speed = $_POST['min_speed'];
+$spd = $_POST['min_sp_defense'];
+
+$set = $mysqli->query("SET SQL_BIG_SELECTS=1");
 
 if ($pokename != '') {
     $nameq = ' WHERE Name LIKE "%' . $pokename . '%"';
@@ -59,12 +67,24 @@ if (isset($_POST['weakness'])) {
         return "'" . $weakness . "'";
     }, $weaknesses);
 
-    $wq .= implode(", ", $wrapped_weaknesses) . ") IN (SELECT Name";
+    $wq .= implode(", ", $wrapped_weaknesses) . ") IN (SELECT Type_Strength.Name";
+    // for ($i = 0; $i < $count-1; $i++) {
+    //     $wq .= ", Name";
+    // }
+
     for ($i = 0; $i < $count-1; $i++) {
-        $wq .= ", Name";
+        $wq .= ", v" . $i . ".Name";
     }
 
-    $wq .= " FROM Type_Strength WHERE Strength=Type1 OR Strength=Type2)";
+    $wq .= " FROM Type_Strength";
+    for ($i = 0; $i < $count-1; $i++) {
+        $wq .= ", Type_Strength v" . $i;
+        // $wq .= " JOIN Type_Strength v" . $i . " ON Type_Strength.Strength=v" . $i . ".Strength";
+    }
+    // $sq .= " WHERE Type1=Type_Strength.Name OR Type2=Type_Strength.Name)";
+
+    $wq .= " WHERE Type_Strength.Strength=Type1 OR Type_Strength.Strength=Type2)";
+
 } 
 if (isset($_POST['strength'])) {
     $strengths = $_POST['strength'];
@@ -89,11 +109,23 @@ if (isset($_POST['strength'])) {
     $sq .= " FROM Type_Strength";
     for ($i = 0; $i < $count-1; $i++) {
         $sq .= ", Type_Strength v" . $i;
+        // $sq .= " JOIN Type_Strength v" . $i . " ON Type_Strength.Name=v" . $i . ".Name";
     }
     $sq .= " WHERE Type1=Type_Strength.Name OR Type2=Type_Strength.Name)";
+
 } 
 
-$query .= $nameq . $ptypeq . $type2q . $wq . $sq;
+if ($first == 1) {
+    $min = " AND ";
+} else {
+    $min = " WHERE ";
+    $first = 1;
+}
+
+$min .= "HP > " . $hp . " AND Attack > " . $attack . " AND Defense > " . $defense . " AND Sp_Atk > " . $spa . " AND Sp_Def > " . $spd . " AND Speed > " . $speed;
+//attack defense hp sp attack sp defense speed"
+
+$query .= $nameq . $ptypeq . $type2q . $wq . $sq . $min;
 // echo $query;
 $result = $mysqli->query($query);
 
@@ -103,48 +135,9 @@ if (!$result) {
 
 header("Location: http://saltine.wuaze.com/team_creator.php");
 
-// Array to store Pokémon names
-// $pokemonNames = [];
-// while ($row = $result->fetch_assoc()) {
-//     // Push Pokémon names into the array
-//     $pokemonNames[] = strtolower($row['Name']);
-// }
-
-// Store the Pokémon names in the session variable
-// $_SESSION["filtered"] = $pokemonNames;
-
 // Free resultset
 $result->free();
 
 // Close connection
 $mysqli->close();
-
-
-
-// // Print results in HTML
-// echo "<table>\n";
-// $table = "<table>";
-// while ($line = $result->fetch_assoc()) {
-//     echo "\t<tr>\n";
-//     foreach ($line as $col_value) {
-//         echo "\t\t<td>$col_value</td>\n";
-//         $table .= "<tr>
-//                   <td>{$col_value}</td>
-//                </tr>";
-//     }
-//     echo "\t</tr>\n";
-// }
-// echo "</table>\n";
-// $table .= "</table>";
-
-// $_SESSION["table"] = $table;
-
-// echo "Number of fields: " . $result->field_count . "<br>";
-// echo "Number of records: " . $result->num_rows . "<br>";
-
-// // Free resultset
-// $result->free();
-
-// // Close connection
-// $mysqli->close();
 ?>
