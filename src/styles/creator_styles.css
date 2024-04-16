@@ -43,11 +43,21 @@ body {
 .back_button {
     width: 15vw;
     margin: 1vh 0vw 1vh 1vw;
+    border: 1px solid transparent;
+    border-radius: 2vh;
+    padding: 10px;
+    font-size: 1.5vw;
+    background-color: #92AFD7;
 }
 
 .view_team_button {
     width: 15vw;
     margin: 1vh 1vw 1vh 1vw;
+    border: 1px solid transparent;
+    border-radius: 2vh;
+    padding: 10px;
+    font-size: 1.5vw;
+    background-color: #FE5F55;
 }
 
 .sections {
@@ -111,4 +121,12 @@ body {
     background-color: blue;
     margin: .5vh 0vw .5vh 0vw;
     width: 20vw;
+    border: 1px solid transparent;
+    border-radius: 3vh;
+    padding: 10px;
+    font-size: 1.5vw;
+}
+
+.search_button:hover {
+    cursor: pointer;
 }

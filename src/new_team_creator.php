@@ -1,14 +1,30 @@
+<?php
+    session_start();
+    // Connect to MySQL server, select database
+    $mysqli = new mysqli('sql211.infinityfree.com', 'if0_36325610', 'Crackerines', 'if0_36325610_pokemon');
+
+    // Check connection
+    if ($mysqli->connect_error) {
+        die('Could not connect: ' . $mysqli->connect_error);
+    }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Team Creator</title>
-    <link rel="stylesheet" href="styles/creator_styles.css">
+    <!-- <link rel="stylesheet" href="styles/creator_styles.css">
     <link rel="stylesheet" href="styles/creator_styles_autocomplete.css">
     <link rel="stylesheet" href="styles/creator_styles_filtering.css">
     <link rel="stylesheet" href="styles/creator_styles_results.css">
-    <link rel="stylesheet" href="styles/creator_styles_min_values.css">
+    <link rel="stylesheet" href="styles/creator_styles_min_values.css"> -->
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles.css">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_filtering.css">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_autocomplete.css">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_results.css">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_min_values.css">
     <script src="./js/autocomplete.js"></script>
 </head>
 <body>
@@ -26,20 +42,25 @@
         <div class="selected_poke_block" id="selected_poke">
             <p class="selected_poke_text">Selected pokemon</p>
             <!-- selected pokemon images appear below -->
+            <?php
+                    $res = $mysqli->query("SELECT DISTINCT LOWER(Name) FROM Pokemon_In_Team, Pokemon WHERE Player_Name='" . $_SESSION['user'] . "' AND Pokemon_ID=ID AND ID>0");
+                    while($row = mysqli_fetch_assoc($res)) {
+                    ?>
+                    <img class="selected_poke_img" onclick="window.location='./deletepoke.php?id=<?php echo $row['LOWER(Name)']?>'" src="./images/<?php echo $row['LOWER(Name)'] ?>.png">
+            <?php } ?>
 
         </div>
         
         <!-- elements for searching/filtering for pokemon -->
         <div class="right_section">
             <!-- <div class="filtering_block"> -->
-                <form class="filtering_block">
-                    
+                <form class="filtering_block" action="searchpokemon.php" method="post">
                     <!-- search by pokemon name -->
                     <div class="search_block">
                         <div class="pokemon_name_search">
                             <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
                             <div class="autocomplete">
-                                <input class="pokemon_name_search" id="pokemon_name" type="text" placeholder="Pokemon name">
+                                <input class="pokemon_name_search" id="pokemon_name" type="text" placeholder="Pokemon name" value="<?php echo isset($_SESSION['form_data']['pokename']) ? $_SESSION['form_data']['pokename'] : ''; ?>">
                             </div>
                             <script>
                                 autocomplete(document.getElementById("pokemon_name"), countries);
@@ -51,40 +72,41 @@
                     <div class="type_search">
                         <!-- primary type -->
                         <select id="primary_type"> 
-                            <option value="primary_type" selected>Primary Type</option>
-                            <option value="bug">Bug</option>
-                            <option value="dragon">Dragon</option>
-                            <option value="electric">Electric</option>
-                            <option value="fighting">Fighting</option>
-                            <option value="fire">Fire</option>
-                            <option value="flying">Flying</option>
-                            <option value="ghost">Ghost</option>
-                            <option value="grass">Grass</option>
-                            <option value="ground">Ground</option>
-                            <option value="ice">Ice</option>
-                            <option value="normal">Normal</option>
-                            <option value="poison">Poison</option>
-                            <option value="rock">Rock</option>
-                            <option value="water">Water</option>
+                        <option value="primary_type" <?php echo ($_SESSION['form_data']['primary_type'] == 'primary_type' || !isset($_SESSION['form_data']['primary_type'])) ? 'selected' : ''; ?>>Primary Type</option>
+                            <option value="Bug" <?php echo $_SESSION['form_data']['primary_type'] == 'Bug' ? 'selected' : ''; ?>>Bug</option>
+                            <option value="Dragon" <?php echo $_SESSION['form_data']['primary_type'] == 'Dragon' ? 'selected' : ''; ?>>Dragon</option>
+                            <option value="Electric" <?php echo $_SESSION['form_data']['primary_type'] == 'Electric' ? 'selected' : ''; ?>>Electric</option>
+                            <option value="Fighting" <?php echo $_SESSION['form_data']['primary_type'] == 'Fighting' ? 'selected' : ''; ?>>Fighting</option>
+                            <option value="Fire" <?php echo $_SESSION['form_data']['primary_type'] == 'Fire' ? 'selected' : ''; ?>>Fire</option>
+                            <option value="Flying" <?php echo $_SESSION['form_data']['primary_type'] == 'Flying' ? 'selected' : ''; ?>>Flying</option>
+                            <option value="Ghost" <?php echo $_SESSION['form_data']['primary_type'] == 'Ghost' ? 'selected' : ''; ?>>Ghost</option>
+                            <option value="Grass" <?php echo $_SESSION['form_data']['primary_type'] == 'Grass' ? 'selected' : ''; ?>>Grass</option>
+                            <option value="Ground" <?php echo $_SESSION['form_data']['primary_type'] == 'Ground' ? 'selected' : ''; ?>>Ground</option>
+                            <option value="Ice" <?php echo $_SESSION['form_data']['primary_type'] == 'Ice' ? 'selected' : ''; ?>>Ice</option>
+                            <option value="Normal" <?php echo $_SESSION['form_data']['primary_type'] == 'Normal' ? 'selected' : ''; ?>>Normal</option>
+                            <option value="Poison" <?php echo $_SESSION['form_data']['primary_type'] == 'Poison' ? 'selected' : ''; ?>>Poison</option>
+                            <option value="Psychic" <?php echo $_SESSION['form_data']['primary_type'] == 'Psychic' ? 'selected' : ''; ?>>Psychic</option>
+                            <option value="Rock" <?php echo $_SESSION['form_data']['primary_type'] == 'Rock' ? 'selected' : ''; ?>>Rock</option>
+                            <option value="Water" <?php echo $_SESSION['form_data']['primary_type'] == 'Water' ? 'selected' : ''; ?>>Water</option>
                         </select>
                         <!-- secondary type -->
                         <select id="secondary_type"> 
-                            <option value="secondary_type" selected>Secondary Type</option>
-                            <option value="bug">Bug</option>
-                            <option value="dragon">Dragon</option>
-                            <option value="electric">Electric</option>
-                            <option value="fighting">Fighting</option>
-                            <option value="fire">Fire</option>
-                            <option value="flying">Flying</option>
-                            <option value="ghost">Ghost</option>
-                            <option value="grass">Grass</option>
-                            <option value="ground">Ground</option>
-                            <option value="ice">Ice</option>
-                            <option value="normal">Normal</option>
-                            <option value="poison">Poison</option>
-                            <option value="psychic">Psychic</option>
-                            <option value="rock">Rock</option>
-                            <option value="water">Water</option>
+                        <option value="secondary_type" <?php echo ($_SESSION['form_data']['secondary_type'] == 'secondary_type' || !isset($_SESSION['form_data']['secondary_type'])) ? 'selected' : ''; ?>>Secondary Type</option>
+                            <option value="Bug" <?php echo $_SESSION['form_data']['secondary_type'] == 'Bug' ? 'selected' : ''; ?>>Bug</option>
+                            <option value="Dragon" <?php echo $_SESSION['form_data']['secondary_type'] == 'Dragon' ? 'selected' : ''; ?>>Dragon</option>
+                            <option value="Electric" <?php echo $_SESSION['form_data']['secondary_type'] == 'Electric' ? 'selected' : ''; ?>>Electric</option>
+                            <option value="Fighting" <?php echo $_SESSION['form_data']['secondary_type'] == 'Fighting' ? 'selected' : ''; ?>>Fighting</option>
+                            <option value="Fire" <?php echo $_SESSION['form_data']['secondary_type'] == 'Fire' ? 'selected' : ''; ?>>Fire</option>
+                            <option value="Flying" <?php echo $_SESSION['form_data']['secondary_type'] == 'Flying' ? 'selected' : ''; ?>>Flying</option>
+                            <option value="Ghost" <?php echo $_SESSION['form_data']['secondary_type'] == 'Ghost' ? 'selected' : ''; ?>>Ghost</option>
+                            <option value="Grass" <?php echo $_SESSION['form_data']['secondary_type'] == 'Grass' ? 'selected' : ''; ?>>Grass</option>
+                            <option value="Ground" <?php echo $_SESSION['form_data']['secondary_type'] == 'Ground' ? 'selected' : ''; ?>>Ground</option>
+                            <option value="Ice" <?php echo $_SESSION['form_data']['secondary_type'] == 'Ice' ? 'selected' : ''; ?>>Ice</option>
+                            <option value="Normal" <?php echo $_SESSION['form_data']['secondary_type'] == 'Normal' ? 'selected' : ''; ?>>Normal</option>
+                            <option value="Poison" <?php echo $_SESSION['form_data']['secondary_type'] == 'Poison' ? 'selected' : ''; ?>>Poison</option>
+                            <option value="Psychic" <?php echo $_SESSION['form_data']['secondary_type'] == 'Psychic' ? 'selected' : ''; ?>>Psychic</option>
+                            <option value="Rock" <?php echo $_SESSION['form_data']['secondary_type'] == 'Rock' ? 'selected' : ''; ?>>Rock</option>
+                            <option value="Water" <?php echo $_SESSION['form_data']['secondary_type'] == 'Water' ? 'selected' : ''; ?>>Water</option>
                         </select>
                     </div>
 
@@ -104,10 +126,10 @@
                                     document.getElementById(strong_weak+button.value).checked = false;
                                 }
                             }
+
                         </script>
                         
                         <div class="weak_against_block" id="weak_against_block">
-                            <!-- <input type="checkbox" id="test"> -->
                             <div class="hidden_weak_against" style="display: none;">
                                 <input type="checkbox" name="weakness[]" id="wBug" value="Bug" <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Bug', $_SESSION['form_data']['weakness']) ? 'checked' : ''; ?>>
                                 <input type="checkbox" name="weakness[]" id="wDragon" value="Dragon" <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Dragon', $_SESSION['form_data']['weakness']) ? 'checked' : ''; ?>>
@@ -194,10 +216,8 @@
                                 <input type="button" onclick="selectType(this, 's');" value="Psychic">
                                 <input type="button" onclick="selectType(this, 's');" value="Rock">
                                 <input type="button" onclick="selectType(this, 's');" value="Water">
-                            </div>
-                            
+                            </div>                            
                         </div>
-
                     </div>
 
                     <!-- for filtering by min value, use slider -->
@@ -238,15 +258,16 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="search_button_block">
-                        <!-- <form action="team_view.html" method="post"> -->
-                            <!-- can put invisible inputs here if needed -->
-
-                            <input type="submit" class="search_button" onclick="getInputs();" value="Search">
-                        <!-- </form> -->
+                        <input type="submit" class="search_button" value="Search">
                     </div>
                 </form>
+
+                <!-- <div class="search_button_block">
+                    <form action="searchpokemon.php" method="post">
+                        <input type="submit" class="search_button" onclick="getInputs();" value="Search">
+                    </form>
+                </div> -->
                 <script>
                     function getInputs() {
                         // pokemon name
@@ -310,26 +331,12 @@
             <!-- </div> -->
             <!-- display results of search in horizontal scrollbox at bottom of page -->
             <div class="results_block"> 
-                <!-- <a onclick="document.getElementById('first').style.width='10px'"><img class=selected_poke_im id="first" src="./images/ditto.png"></a> -->
-                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/ditto.png">
-                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/dragonite.png">
-                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/mew.png">
-                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/pikachu.png">
-                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/vaporeon.png">
-                <img class=selected_poke_img onclick="selectPoke(this)" src="./images/rhydon.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
-                <img class=selected_poke_img src="./images/ditto.png">
+                <?php
+                    $res = $mysqli->query("SELECT * FROM Filtered");
+                    while($row = mysqli_fetch_assoc($res)) {
+                    ?>
+                    <img class="selected_poke_img" onclick="window.location='./insertpoke.php?id=<?php echo $row['Name']?>'" src="./images/<?php echo $row['Name'] ?>.png">
+                <?php } ?>
             </div>
         </div>
     </div> 
@@ -352,3 +359,5 @@
     </script>
 </body>
 </html>
+<?php 
+$mysqli->close(); ?>

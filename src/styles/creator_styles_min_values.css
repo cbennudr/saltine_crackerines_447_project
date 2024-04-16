@@ -32,6 +32,7 @@
 
 .individual_slider_block input[type="range"] {
     width: 20vw;
+    padding: 1vh;
 }
 .individual_slider_block input[type="range"]:hover {
     cursor: pointer;
