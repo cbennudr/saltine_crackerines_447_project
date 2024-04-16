@@ -101,3 +101,14 @@ body {
     background-color: brown;
     overflow-x: hidden;
 }
+
+.search_button_block {
+    display: flex;
+    flex-direction: row;
+}
+
+.search_button {
+    background-color: blue;
+    margin: .5vh 0vw .5vh 0vw;
+    width: 20vw;
+}

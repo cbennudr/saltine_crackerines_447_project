@@ -87,7 +87,9 @@
     font-size: 1vw;
     flex: 1;
     text-align: center;
-    margin: .1vh .1vw 0vh .1vw
+    margin: .1vh .1vw 0vh .1vw;
+    background-color: #FE5F55;
+    
     /* padding: 0vh .1vw 0vh .1vw; */
 }
 

@@ -49,7 +49,7 @@
                 <!-- filter by type -->
                 <div class="type_search">
                     <!-- primary type -->
-                    <select> 
+                    <select id="primary_type"> 
                         <option value="primary_type" selected>Primary Type</option>
                         <option value="bug">Bug</option>
                         <option value="dragon">Dragon</option>
@@ -67,7 +67,7 @@
                         <option value="water">Water</option>
                     </select>
                     <!-- secondary type -->
-                    <select> 
+                    <select id="secondary_type"> 
                         <option value="secondary_type" selected>Secondary Type</option>
                         <option value="bug">Bug</option>
                         <option value="dragon">Dragon</option>
@@ -89,55 +89,68 @@
 
                 <!-- weak/strong against is 5x5 selection button area -->
                 <div class="weak_strong_against_block">
+
+                    <script>
+                        const selectedColor = 'rgb(0, 0, 0)'; //"#000000";
+                        const deselectedColor = 'rgb(254, 95, 85)'; //"#FE5F55";
+                        function selectType(button) {
+                            var curCol = getComputedStyle(button)['background-color'];
+                            if (curCol == deselectedColor) {
+                                button.style.background = selectedColor;
+                            } else {
+                                button.style.background = deselectedColor;
+                            }
+                        }
+                    </script>
                     
-                    <div class="weak_against_block">
+                    <div class="weak_against_block" id="weak_against_block">
                         <p>Types weak against</p>
                         <div class="weak_against_row">
-                            <input type="submit" value="bug">
-                            <input type="submit" value="dragon">
-                            <input type="submit" value="electric">
-                            <input type="submit" value="fighting">
-                            <input type="submit" value="fire">
+                            <input type="submit" onclick="selectType(this);" value="bug">
+                            <input type="submit" onclick="selectType(this);" value="dragon">
+                            <input type="submit" onclick="selectType(this);" value="electric">
+                            <input type="submit" onclick="selectType(this);" value="fighting">
+                            <input type="submit" onclick="selectType(this);" value="fire">
                         </div>
                         <div class="weak_against_row">
-                            <input type="submit" value="flying">
-                            <input type="submit" value="ghost">
-                            <input type="submit" value="grass">
-                            <input type="submit" value="ground">
-                            <input type="submit" value="ice">
+                            <input type="submit" onclick="selectType(this);" value="flying">
+                            <input type="submit" onclick="selectType(this);" value="ghost">
+                            <input type="submit" onclick="selectType(this);" value="grass">
+                            <input type="submit" onclick="selectType(this);" value="ground">
+                            <input type="submit" onclick="selectType(this);" value="ice">
                         </div>
                         <div class="weak_against_row">
-                            <input type="submit" value="normal">
-                            <input type="submit" value="poison">
-                            <input type="submit" value="psychic">
-                            <input type="submit" value="rock">
-                            <input type="submit" value="water">
+                            <input type="submit" onclick="selectType(this);" value="normal">
+                            <input type="submit" onclick="selectType(this);" value="poison">
+                            <input type="submit" onclick="selectType(this);" value="psychic">
+                            <input type="submit" onclick="selectType(this);" value="rock">
+                            <input type="submit" onclick="selectType(this);" value="water">
                         </div>
                         
                     </div>
 
-                    <div class="strong_against_block">
+                    <div class="strong_against_block" id="strong_against_block">
                         <p>Types strong against</p>
                         <div class="strong_against_row">
-                            <input type="submit" value="bug">
-                            <input type="submit" value="dragon">
-                            <input type="submit" value="electric">
-                            <input type="submit" value="fighting">
-                            <input type="submit" value="fire">
+                            <input type="submit" onclick="selectType(this);" value="bug">
+                            <input type="submit" onclick="selectType(this);" value="dragon">
+                            <input type="submit" onclick="selectType(this);" value="electric">
+                            <input type="submit" onclick="selectType(this);" value="fighting">
+                            <input type="submit" onclick="selectType(this);" value="fire">
                         </div>
                         <div class="strong_against_row">
-                            <input type="submit" value="flying">
-                            <input type="submit" value="ghost">
-                            <input type="submit" value="grass">
-                            <input type="submit" value="ground">
-                            <input type="submit" value="ice">
+                            <input type="submit" onclick="selectType(this);" value="flying">
+                            <input type="submit" onclick="selectType(this);" value="ghost">
+                            <input type="submit" onclick="selectType(this);" value="grass">
+                            <input type="submit" onclick="selectType(this);" value="ground">
+                            <input type="submit" onclick="selectType(this);" value="ice">
                         </div>
                         <div class="strong_against_row">
-                            <input type="submit" value="normal">
-                            <input type="submit" value="poison">
-                            <input type="submit" value="psychic">
-                            <input type="submit" value="rock">
-                            <input type="submit" value="water">
+                            <input type="submit" onclick="selectType(this);" value="normal">
+                            <input type="submit" onclick="selectType(this);" value="poison">
+                            <input type="submit" onclick="selectType(this);" value="psychic">
+                            <input type="submit" onclick="selectType(this);" value="rock">
+                            <input type="submit" onclick="selectType(this);" value="water">
                         </div>
                         
                     </div>
@@ -151,37 +164,104 @@
                         <div class="individual_slider_block">
                             <!-- attack max = 190 -->
                             <p class="slider_text">Min. Attack: 0</p>
-                            <input type="range" value=0 max="190" onchange="this.previousSibling.previousSibling.innerHTML='Min. Attack: '+this.value;">
+                            <input type="range" id="min_attack" value=0 max="190" onchange="this.previousSibling.previousSibling.innerHTML='Min. Attack: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
                             <!-- defense max = 250 -->
                             <p class="slider_text">Min. Defense: 0</p>
-                            <input type="range" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Defense: '+this.value;">
+                            <input type="range" id="min_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Defense: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
                             <!-- hp max = 255 -->
                             <p class="slider_text">Min. HP: 0</p>
-                            <input type="range" value=0 max="255" onchange="this.previousSibling.previousSibling.innerHTML='Min. HP: '+this.value;">
+                            <input type="range" id="min_hp" value=0 max="255" onchange="this.previousSibling.previousSibling.innerHTML='Min. HP: '+this.value;">
                         </div>
                     </div>
                     <div class="slider_row">
                         <div class="individual_slider_block">
                             <!-- sp attack max = 194 -->
                             <p class="slider_text">Min. Sp. Attack: 0</p>
-                            <input type="range" value=0 max="194" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Attack: '+this.value;">
+                            <input type="range" id="min_sp_attack" value=0 max="194" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Attack: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
                             <!-- sp defense max = 250 -->
                             <p class="slider_text">Min. Sp. Defense: 0</p>
-                            <input type="range" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Defense: '+this.value;">
+                            <input type="range" id="min_sp_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Defense: '+this.value;">
                         </div>
                         <div class="individual_slider_block">
                             <!-- speed max = 200 -->
                             <p class="slider_text">Min. Speed: 0</p>
-                            <input type="range" value=0 max="200" onchange="this.previousSibling.previousSibling.innerHTML='Min. Speed: '+this.value;">
+                            <input type="range" id="min_speed" value=0 max="200" onchange="this.previousSibling.previousSibling.innerHTML='Min. Speed: '+this.value;">
                         </div>
                     </div>
                 </div>
+
+                <div class="search_button_block">
+                    <form action="team_view.html" method="post">
+                        <!-- can put invisible inputs here if needed -->
+
+                        <input type="submit" class="search_button" onclick="getInputs();" value="Search">
+                    </form>
+                </div>
+                <script>
+                    function getInputs() {
+                        // pokemon name
+                        var pokeName = document.getElementById("pokemon_name").value;
+                        console.log("poke name: "+pokeName);
+
+                        // poke types
+                        var primaryType = document.getElementById("primary_type").value;
+                        console.log("primary type: "+primaryType);
+                        var secondaryType = document.getElementById("secondary_type").value;
+                        console.log("secondary type: "+secondaryType);
+
+                        // types weak against
+                        const weakAgainstTypes = document.getElementById("weak_against_block").children;
+                        var weakAgainst = [];
+                        for (var i=1; i <= 3; i++) {
+                            var row = weakAgainstTypes[i].children;
+                            for (var j=0; j < row.length; j++) {
+                                var curCol = getComputedStyle(row[j])['background-color'];
+                                if (curCol == 'rgb(0, 0, 0)') {
+                                    // console.log(row[j].value);
+                                    weakAgainst.push(row[j].value)
+                                }
+                            }
+                        }
+                        console.log("weak against: "+weakAgainst);
+                        // types strong against
+                        const strongAgainstTypes = document.getElementById("strong_against_block").children;
+                        var strongAgainst = [];
+                        for (var i=1; i <= 3; i++) {
+                            var row = strongAgainstTypes[i].children;
+                            for (var j=0; j < row.length; j++) {
+                                var curCol = getComputedStyle(row[j])['background-color'];
+                                if (curCol == 'rgb(0, 0, 0)') {
+                                    strongAgainst.push(row[j].value)
+                                }
+                            }
+                        }
+                        console.log("strong against: "+strongAgainst);
+
+
+                        // min values
+                        var minAttack = document.getElementById("min_attack").value;
+                        console.log("min attack: "+minAttack);
+                        var minDefense = document.getElementById("min_defense").value;
+                        console.log("min defense: "+minDefense);
+                        var minHP = document.getElementById("min_hp").value;
+                        console.log("min hp: "+minHP);
+                        var minSpAttack = document.getElementById("min_sp_attack").value;
+                        console.log("min sp attack: ", minSpAttack);
+                        var minSpDefense = document.getElementById("min_sp_defense").value;
+                        console.log("min sp defense: "+minSpDefense);
+                        var minSpeed = document.getElementById("min_speed").value;
+                        console.log("min speed: "+minSpeed);
+
+                        // window.location.href = 'http://www.google.com';
+                        return false;
+                    }
+                </script>
 
             </div>
             <!-- display results of search in horizontal scrollbox at bottom of page -->
@@ -212,7 +292,6 @@
     <script>
         function selectPoke(img) {
             const numSelectedPoke = document.getElementById("selected_poke").children.length;
-            // const numSelectedPoke = document.querySelectorAll(".selected_poke_block").children.length;
             if (numSelectedPoke > 6) {
                 alert("Cannot select anymore pokemon (max 6)!");
                 return;
