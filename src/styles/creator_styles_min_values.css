@@ -3,13 +3,18 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: purple;
     margin: .25vw;
+
+    border: 1px solid black;
+    border-radius: 2vw;
+    background-color: var(--col1);
+    padding: 1vh;
 }
 
 .min_values_text {
     font-size: 1.25vw;
     margin: 0px;
+    background-color: transparent;
 }
 
 .slider_row {
@@ -17,6 +22,7 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+    background-color: transparent;
 }
 
 .individual_slider_block {
@@ -24,10 +30,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: orange;
+    background-color: var(--col4);
     text-align: center;
     margin: .1vh 3vw .1vh 3vw;
     padding: .25vh 0vw .25vh 0vw;
+    border-radius: 1vw;
 }
 
 .individual_slider_block input[type="range"] {
@@ -43,4 +50,25 @@
     text-align: center;
     justify-content: center;
     margin: 0px;
+    background-color: transparent;
+    color: white;
+}
+
+.min_attack {
+    background-color: var(--col4);
+}
+.min_defense {
+    background-color: var(--col3);
+}
+.min_hp {
+    background-color: var(--col4);
+}
+.min_sp_attack {
+    background-color: var(--col3);
+}
+.min_sp_defense {
+    background-color: var(--col4);
+}
+.min_speed {
+    background-color: var(--col3);
 }

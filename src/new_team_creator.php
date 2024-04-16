@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="styles/creator_styles_filtering.css">
     <link rel="stylesheet" href="styles/creator_styles_results.css">
     <link rel="stylesheet" href="styles/creator_styles_min_values.css"> -->
-    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles.css">
-    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_filtering.css">
-    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_autocomplete.css">
-    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_results.css">
-    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_min_values.css">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles.css?v=<? echo time(); ?>">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_filtering.css?v=<? echo time(); ?>">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_autocomplete.css?v=<? echo time(); ?>">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_results.css?v=<? echo time(); ?>">
+    <link rel="stylesheet" href="http://saltine.wuaze.com/styles/creator_styles_min_values.css?v=<? echo time(); ?>">
     <script src="./js/autocomplete.js"></script>
 </head>
 <body>
@@ -54,25 +54,35 @@
         <!-- elements for searching/filtering for pokemon -->
         <div class="right_section">
             <!-- <div class="filtering_block"> -->
-                <form class="filtering_block" action="searchpokemon.php" method="post">
+                <form class="filtering_block" action="searchpokemon.php" method="POST">
                     <!-- search by pokemon name -->
-                    <div class="search_block">
-                        <div class="pokemon_name_search">
+                    <!-- <div class="search_block">
+                        <div class="pokemon_name_search"> -->
                             <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
-                            <div class="autocomplete">
-                                <input class="pokemon_name_search" id="pokemon_name" type="text" placeholder="Pokemon name" value="<?php echo isset($_SESSION['form_data']['pokename']) ? $_SESSION['form_data']['pokename'] : ''; ?>">
+                            <!-- <div class="autocomplete">
+                                <input class="pokemon_name_search" id="pokemon_name" type="text" name="pokename" placeholder="Pokemon name" value="<?php echo isset($_SESSION['form_data']['pokename']) ? $_SESSION['form_data']['pokename'] : ''; ?>">
                             </div>
                             <script>
                                 autocomplete(document.getElementById("pokemon_name"), countries);
                             </script>
                         </div>
-                    </div>
+                    </div> -->
 
                     <!-- filter by type -->
-                    <div class="type_search">
+                    <div class="name_type_search">
+                        <div class="pokemon_name_search">
+                            <!-- autocomplete: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_autocomplete -->
+                            <div class="autocomplete">
+                                <input class="pokemon_name_search" id="pokemon_name" type="text" name="pokename" placeholder="Pokemon name" value="<?php echo isset($_SESSION['form_data']['pokename']) ? $_SESSION['form_data']['pokename'] : ''; ?>">
+                            </div>
+                            <script>
+                                autocomplete(document.getElementById("pokemon_name"), pokeNames);
+                            </script>
+                        </div>
+
                         <!-- primary type -->
-                        <select id="primary_type"> 
-                        <option value="primary_type" <?php echo ($_SESSION['form_data']['primary_type'] == 'primary_type' || !isset($_SESSION['form_data']['primary_type'])) ? 'selected' : ''; ?>>Primary Type</option>
+                        <select id="primary_type" name="primary_type"> 
+                            <option value="primary_type" <?php echo ($_SESSION['form_data']['primary_type'] == 'primary_type' || !isset($_SESSION['form_data']['primary_type'])) ? 'selected' : ''; ?>>Primary Type</option>
                             <option value="Bug" <?php echo $_SESSION['form_data']['primary_type'] == 'Bug' ? 'selected' : ''; ?>>Bug</option>
                             <option value="Dragon" <?php echo $_SESSION['form_data']['primary_type'] == 'Dragon' ? 'selected' : ''; ?>>Dragon</option>
                             <option value="Electric" <?php echo $_SESSION['form_data']['primary_type'] == 'Electric' ? 'selected' : ''; ?>>Electric</option>
@@ -90,8 +100,8 @@
                             <option value="Water" <?php echo $_SESSION['form_data']['primary_type'] == 'Water' ? 'selected' : ''; ?>>Water</option>
                         </select>
                         <!-- secondary type -->
-                        <select id="secondary_type"> 
-                        <option value="secondary_type" <?php echo ($_SESSION['form_data']['secondary_type'] == 'secondary_type' || !isset($_SESSION['form_data']['secondary_type'])) ? 'selected' : ''; ?>>Secondary Type</option>
+                        <select id="secondary_type" name="secondary_type"> 
+                            <option value="secondary_type" <?php echo ($_SESSION['form_data']['secondary_type'] == 'secondary_type' || !isset($_SESSION['form_data']['secondary_type'])) ? 'selected' : ''; ?>>Secondary Type</option>
                             <option value="Bug" <?php echo $_SESSION['form_data']['secondary_type'] == 'Bug' ? 'selected' : ''; ?>>Bug</option>
                             <option value="Dragon" <?php echo $_SESSION['form_data']['secondary_type'] == 'Dragon' ? 'selected' : ''; ?>>Dragon</option>
                             <option value="Electric" <?php echo $_SESSION['form_data']['secondary_type'] == 'Electric' ? 'selected' : ''; ?>>Electric</option>
@@ -115,8 +125,12 @@
 
                         <script>
                             const selectedColor = 'rgb(0, 0, 0)'; //"#000000";
-                            const deselectedColor = 'rgb(254, 95, 85)'; //"#FE5F55";
+                            const wDeselectedColor = 'rgb(254, 95, 85)'; //"#FE5F55";
+                            const sDeselectedColor = 'rgb(36, 123, 160)';
+
                             function selectType(button, strong_weak) {
+                                if (strong_weak == 'w') { deselectedColor = wDeselectedColor; }
+                                else { deselectedColor = sDeselectedColor; }
                                 var curCol = getComputedStyle(button)['background-color'];
                                 if (curCol == deselectedColor) {
                                     button.style.background = selectedColor;
@@ -150,27 +164,27 @@
                                 <input type="checkbox" name="weakness[]" id="wWater" value="Water" <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Water', $_SESSION['form_data']['weakness']) ? 'checked' : ''; ?>>
                             </div>
 
-                            <p>Types weak against</p>
+                            <p class="type_text">Types weak against</p>
                             <div class="weak_against_row">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Bug">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Dragon">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Electric">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Fighting">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Fire">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Bug" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Bug', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Dragon" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Dragon', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Electric" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Electric', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Fighting" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Fighting', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Fire" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Fire', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
                             </div>
                             <div class="weak_against_row">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Flying">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Ghost">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Grass">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Ground">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Ice">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Flying" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Flying', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Ghost" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Ghost', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Grass" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Grass', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Ground" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Ground', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Ice" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Ice', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
                             </div>
                             <div class="weak_against_row">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Normal">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Poison">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Psychic">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Rock">
-                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Water">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Normal" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Normal', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Poison" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Poison', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Psychic" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Psychic', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Rock" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Rock', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
+                                <input type="button" class="type_button" onclick="selectType(this, 'w');" value="Water" style="background-color: <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Water', $_SESSION['form_data']['weakness']) ? 'rgb(0, 0, 0)' : 'rgb(254, 95, 85)'; ?>">
                             </div>
                             
                         </div>
@@ -195,7 +209,7 @@
                                 <input type="checkbox" name="strength[]" id="sRock" value="Rock" <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Rock', $_SESSION['form_data']['weakness']) ? 'checked' : ''; ?>>
                                 <input type="checkbox" name="strength[]" id="sWater" value="Water" <?php echo isset($_SESSION['form_data']['weakness']) && in_array('Water', $_SESSION['form_data']['weakness']) ? 'checked' : ''; ?>>
                             </div>
-                            <p>Types strong against</p>
+                            <p class="type_text">Types strong against</p>
                             <div class="strong_against_row">
                                 <input type="button" onclick="selectType(this, 's');" value="Bug">
                                 <input type="button" onclick="selectType(this, 's');" value="Dragon">
@@ -224,37 +238,37 @@
                     <!-- min: attack, defense, hp, special attack, special defense, speed -->
                     <div class="min_values">
                         <div class="slider_row">
-                            <div class="individual_slider_block">
+                            <div class="individual_slider_block min_attack">
                                 <!-- attack max = 190 -->
                                 <p class="slider_text">Min. Attack: 0</p>
-                                <input type="range" id="min_attack" value=0 max="190" onchange="this.previousSibling.previousSibling.innerHTML='Min. Attack: '+this.value;">
+                                <input type="range" id="min_attack" name="min_attack" value=0 max="190" onchange="this.previousSibling.previousSibling.innerHTML='Min. Attack: '+this.value;">
                             </div>
-                            <div class="individual_slider_block">
+                            <div class="individual_slider_block min_defense">
                                 <!-- defense max = 250 -->
                                 <p class="slider_text">Min. Defense: 0</p>
-                                <input type="range" id="min_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Defense: '+this.value;">
+                                <input type="range" id="min_defense" name="min_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Defense: '+this.value;">
                             </div>
-                            <div class="individual_slider_block">
+                            <div class="individual_slider_block min_hp">
                                 <!-- hp max = 255 -->
                                 <p class="slider_text">Min. HP: 0</p>
-                                <input type="range" id="min_hp" value=0 max="255" onchange="this.previousSibling.previousSibling.innerHTML='Min. HP: '+this.value;">
+                                <input type="range" id="min_hp" name="min_hp" value=0 max="255" onchange="this.previousSibling.previousSibling.innerHTML='Min. HP: '+this.value;">
                             </div>
                         </div>
                         <div class="slider_row">
-                            <div class="individual_slider_block">
+                            <div class="individual_slider_block min_sp_attack">
                                 <!-- sp attack max = 194 -->
                                 <p class="slider_text">Min. Sp. Attack: 0</p>
-                                <input type="range" id="min_sp_attack" value=0 max="194" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Attack: '+this.value;">
+                                <input type="range" id="min_sp_attack" name="min_sp_attack" value=0 max="194" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Attack: '+this.value;">
                             </div>
-                            <div class="individual_slider_block">
+                            <div class="individual_slider_block min_sp_defense">
                                 <!-- sp defense max = 250 -->
                                 <p class="slider_text">Min. Sp. Defense: 0</p>
-                                <input type="range" id="min_sp_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Defense: '+this.value;">
+                                <input type="range" id="min_sp_defense" name="min_sp_defense" value=0 max="250" onchange="this.previousSibling.previousSibling.innerHTML='Min. Sp. Defense: '+this.value;">
                             </div>
-                            <div class="individual_slider_block">
+                            <div class="individual_slider_block min_speed">
                                 <!-- speed max = 200 -->
                                 <p class="slider_text">Min. Speed: 0</p>
-                                <input type="range" id="min_speed" value=0 max="200" onchange="this.previousSibling.previousSibling.innerHTML='Min. Speed: '+this.value;">
+                                <input type="range" id="min_speed" name="min_speed" value=0 max="200" onchange="this.previousSibling.previousSibling.innerHTML='Min. Speed: '+this.value;">
                             </div>
                         </div>
                     </div>
@@ -263,11 +277,6 @@
                     </div>
                 </form>
 
-                <!-- <div class="search_button_block">
-                    <form action="searchpokemon.php" method="post">
-                        <input type="submit" class="search_button" onclick="getInputs();" value="Search">
-                    </form>
-                </div> -->
                 <script>
                     function getInputs() {
                         // pokemon name
@@ -307,7 +316,6 @@
                             }
                         }
                         console.log("strong against: "+strongAgainst);
-
 
                         // min values
                         var minAttack = document.getElementById("min_attack").value;

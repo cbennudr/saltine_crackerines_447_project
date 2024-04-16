@@ -2,6 +2,7 @@
     position: relative;
     display: inline-block;
     width: 100%;
+    background-color: var(--col5);
 }
 /* 
 input {
@@ -11,10 +12,24 @@ input {
     font-size: 1.5vw;
 } */
 
+/* .pokemon_name_search_block {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: green;
+} */
+
+.pokemon_name_search {
+    background-color: var(--col5);
+}
+
 .pokemon_name_search input[type=text] {
     background-color: var(--col4);
     color: #fff;
-    width: 100%;
+    width: 15vw;
+    height: 6vh;
     border: 1px solid black;
     border-radius: 2vh;
     border: 1px solid transparent;
@@ -23,6 +38,11 @@ input {
     font-size: 1.5vw;
     
 }
+
+::placeholder {
+    color: white;
+}
+
 /* 
 input[type=submit] {
     background-color: var(--col3);

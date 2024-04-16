@@ -2,8 +2,8 @@
     --col1: #E8DAB2;
     --col2: #50514F;
     --col3: #FE5F55;
-    --col4: #247BA0;
-    --col5: #92AFD7;
+    --col4: #247ba0;
+    --col5: #92afd7;
 }
 
 
@@ -47,7 +47,10 @@ body {
     border-radius: 2vh;
     padding: 10px;
     font-size: 1.5vw;
-    background-color: #92AFD7;
+    background-color: var(--col3);
+}
+.back_button:hover {
+    cursor: pointer;
 }
 
 .view_team_button {
@@ -57,7 +60,10 @@ body {
     border-radius: 2vh;
     padding: 10px;
     font-size: 1.5vw;
-    background-color: #FE5F55;
+    background-color: var(--col3);
+}
+.view_team_button:hover {
+    cursor: pointer;
 }
 
 .sections {
@@ -79,9 +85,16 @@ body {
     font-weight: 500;
     /* overflow-y: scroll; */
 
-    background-color: aqua;
+    background-color: #92afd7F0;
     width: 15%;
     height: 100%;
+
+    border-radius: 1vw;
+}
+
+.selected_poke_text {
+    background-color: var(--col5);
+    margin: 2vh;
 }
 
 .selected_poke_img {
@@ -108,23 +121,50 @@ body {
 
     height: 100%; width: 85%;
 
-    background-color: brown;
+    background-color: var(--col2);
     overflow-x: hidden;
+
+    border-radius: 1vw;
+
+    padding: .5vw;
 }
 
+
+/* textbox for searchng for pokemon by name */
+.search_block {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: #859cbe;
+}
+
+.pokemon_name_search {
+    display: flex; 
+    justify-content: center; 
+    flex-direction: column; 
+    align-items: center;
+}
+
+/* button to search for pokemon using filtes */
 .search_button_block {
     display: flex;
     flex-direction: row;
+    /* margin: 1vw; */
+    background-color: transparent;
 }
 
 .search_button {
-    background-color: blue;
+    background-color: var(--col3);
     margin: .5vh 0vw .5vh 0vw;
-    width: 20vw;
+    width: 15vw;
+    height: 6vh;
     border: 1px solid transparent;
     border-radius: 3vh;
-    padding: 10px;
     font-size: 1.5vw;
+    text-align: center;
+    color: #ffffff;
 }
 
 .search_button:hover {
