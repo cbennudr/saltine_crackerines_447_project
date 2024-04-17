@@ -1,0 +1,39 @@
+:root {
+    --col1: #E8DAB2;
+    --col2: #50514F;
+    --col3: #FE5F55;
+    --col4: #247ba0;
+    --col5: #92afd7;
+}
+
+body {
+    background-color: var(--col1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.poke_card {
+    height: 30vh;
+    width: 15vw;
+    background-color: var(--col3);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1vh .5vw 1vh .5vw;
+    margin: 2vw;
+    border: 1px solid transparent;
+    border-radius: 2vw;
+}
+
+.poke_card_text {
+    color: white;
+    font-size: 1.5vw;
+}
+
+.poke_card_img {
+    width: 10vw;
+    height: auto;
+}

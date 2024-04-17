@@ -17,7 +17,23 @@
         <input class="back_button" type="submit" value="Back" onclick="window.location='./home.html'">
         <!-- header text -->
         <h1 class="title_text"> Create your team! </h1>
-        <input class="view_team_button" type="submit" value="View Team" onclick="window.location='./team_view.html'">
+        <input class="view_team_button" type="submit" value="View Team" onclick="window.location=getSelectedPokeURL()">
+        <script>
+            function getSelectedPokeURL(){
+                // return './team_view.html?'+'1='+'pikachu'+'&2='+'bulbasaur';
+                var retStr = './team_view.html?';
+                var selectedPokeBlockChildren = document.getElementById("selected_poke").children;
+                var curPoke;
+                for (var i=1; i < selectedPokeBlockChildren.length; i++) {
+                    curPoke = selectedPokeBlockChildren[i].src.split('/').slice(-1)[0].split('.')[0];
+                    if (i==1){ retStr = retStr+i+'='+curPoke; }
+                    else {
+                        retStr = retStr+'&'+i+'='+curPoke;
+                    }
+                }
+                return retStr;   
+            }
+        </script>
     </div>
 
     <div class="sections">
